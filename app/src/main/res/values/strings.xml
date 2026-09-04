@@ -1,0 +1,27 @@
+<resources>
+
+    <string name="app_name">SmartQueue</string>
+
+    <string name="tagline">Wait Less. Live More.</string>
+
+    <string name="restaurant">Restaurant</string>
+    <string name="beauty_parlor">Beauty Parlor</string>
+    <string name="dental_clinic">Dental Clinic</string>
+    <string name="supermarket">Supermarket</string>
+    <string name="airport">Airport</string>
+
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="logout">Logout</string>
+
+    <string name="join_queue">Join Queue</string>
+    <string name="my_queue">My Queue</string>
+    <string name="cancel_queue">Cancel Queue</string>
+    <string name="view_queue">View Queue</string>
+
+    <string name="people_ahead">People Ahead</string>
+    <string name="estimated_wait">Estimated Wait</string>
+    <string name="now_serving">Now Serving</string>
+    <string name="your_token">Your Token</string>
+
+</resources>

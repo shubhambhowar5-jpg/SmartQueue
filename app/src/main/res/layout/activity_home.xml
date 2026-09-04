@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SmartQueue"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Welcome!"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_heading"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Choose a service to join a queue"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_body" />
+
+        <!-- Restaurant -->
+
+        <Button
+            android:id="@+id/btnRestaurant"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="28dp"
+            android:text="🍽  Restaurant"
+            android:textAllCaps="false"
+            android:textSize="@dimen/text_body" />
+
+        <!-- Beauty Parlor -->
+
+        <Button
+            android:id="@+id/btnBeauty"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="16dp"
+            android:text="💇  Beauty Parlor"
+            android:textAllCaps="false"
+            android:textSize="@dimen/text_body" />
+
+        <!-- Dental Clinic -->
+
+        <Button
+            android:id="@+id/btnDental"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="16dp"
+            android:text="🦷  Dental Clinic"
+            android:textAllCaps="false"
+            android:textSize="@dimen/text_body" />
+
+        <!-- Supermarket -->
+
+        <Button
+            android:id="@+id/btnSupermarket"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="16dp"
+            android:text="🛒  Supermarket"
+            android:textAllCaps="false"
+            android:textSize="@dimen/text_body" />
+
+        <!-- Airport -->
+
+        <Button
+            android:id="@+id/btnAirport"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="16dp"
+            android:text="✈  Airport"
+            android:textAllCaps="false"
+            android:textSize="@dimen/text_body" />
+
+        <Button
+            android:id="@+id/btnMyQueue"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="28dp"
+            android:text="My Queue"
+            android:textAllCaps="false"
+            android:textSize="@dimen/text_body" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="12dp"
+            android:text="Logout"
+            android:textAllCaps="false"
+            android:textSize="@dimen/text_body" />
+
+    </LinearLayout>
+
+</ScrollView>
