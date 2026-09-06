@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
 
-    <!-- SmartQueue Brand Colors -->
-    <color name="primary">#1565C0</color>
-    <color name="primary_dark">#0D47A1</color>
-    <color name="primary_light">#42A5F5</color>
+    <color name="primary">#6C4AB6</color>
+    <color name="primary_dark">#4B2E83</color>
+    <color name="primary_light">#9A7AD8</color>
 
-    <!-- Secondary / Accent -->
-    <color name="secondary">#00A6A6</color>
-    <color name="secondary_light">#4DD0C8</color>
+    <color name="secondary">#8B65D6</color>
+    <color name="secondary_light">#B9A1E8</color>
 
-    <!-- Backgrounds -->
-    <color name="background">#F5F7FA</color>
-    <color name="surface">#FFFFFF</color>
-
-    <!-- Text -->
-    <color name="text_primary">#1F2937</color>
-    <color name="text_secondary">#6B7280</color>
-    <color name="text_light">#9CA3AF</color>
-
-    <!-- Status -->
-    <color name="success">#2E7D32</color>
-    <color name="warning">#F9A825</color>
-    <color name="error">#D32F2F</color>
-
-    <!-- Queue -->
-    <color name="queue_waiting">#1565C0</color>
-    <color name="queue_serving">#00A6A6</color>
-    <color name="queue_completed">#2E7D32</color>
-
-    <!-- Common -->
-    <color name="divider">#E5E7EB</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+
+    <color name="background">#F7F4FC</color>
+    <color name="surface">#FFFFFF</color>
+
+    <color name="text_primary">#26212F</color>
+    <color name="text_secondary">#746D80</color>
+
+    <color name="divider">#E4DDF0</color>
+
+    <color name="queue_waiting">#F59E0B</color>
+    <color name="queue_serving">#22A06B</color>
+    <color name="queue_completed">#6C4AB6</color>
 
 </resources>

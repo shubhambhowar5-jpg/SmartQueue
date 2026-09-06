@@ -3,6 +3,7 @@ package com.example.smartqueue
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -16,6 +17,9 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         auth = FirebaseAuth.getInstance()
+
+        val welcome =
+            findViewById<TextView>(R.id.tvWelcome)
 
         val restaurant =
             findViewById<Button>(R.id.btnRestaurant)
@@ -35,61 +39,73 @@ class HomeActivity : AppCompatActivity() {
         val myQueue =
             findViewById<Button>(R.id.btnMyQueue)
 
+        val restaurantStaff =
+            findViewById<Button>(R.id.btnRestaurantStaff)
+
         val logout =
             findViewById<Button>(R.id.btnLogout)
 
+        welcome.text = "Welcome!"
+
         restaurant.setOnClickListener {
 
-            val intent =
-                Intent(this, QueueActivity::class.java)
-
-            intent.putExtra(
-                "SERVICE_NAME",
-                "Restaurant"
+            startActivity(
+                Intent(
+                    this,
+                    QueueActivity::class.java
+                )
             )
-
-            startActivity(intent)
         }
 
         /*
-         * The other four sections belong
-         * to your group members.
-         *
-         * We are not changing their modules here.
+         * These four sections are reserved for
+         * the other team members.
          */
-
         beauty.setOnClickListener {
-            // Other team member's module
+
         }
 
         dental.setOnClickListener {
-            // Other team member's module
+
         }
 
         supermarket.setOnClickListener {
-            // Other team member's module
+
         }
 
         airport.setOnClickListener {
-            // Other team member's module
+
         }
 
-        // Restaurant user's My Queue
         myQueue.setOnClickListener {
 
-            val intent =
-                Intent(this, MyQueueActivity::class.java)
-
-            startActivity(intent)
+            startActivity(
+                Intent(
+                    this,
+                    MyQueueActivity::class.java
+                )
+            )
         }
 
-        // Logout
+        restaurantStaff.setOnClickListener {
+
+            startActivity(
+                Intent(
+                    this,
+                    RestaurantStaffActivity::class.java
+                )
+            )
+        }
+
         logout.setOnClickListener {
 
             auth.signOut()
 
             val intent =
-                Intent(this, LoginActivity::class.java)
+                Intent(
+                    this,
+                    LoginActivity::class.java
+                )
 
             intent.flags =
                 Intent.FLAG_ACTIVITY_NEW_TASK or

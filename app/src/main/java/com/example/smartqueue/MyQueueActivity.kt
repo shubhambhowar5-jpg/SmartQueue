@@ -15,17 +15,20 @@ class MyQueueActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
 
     private var ticketListener: ListenerRegistration? = null
+    private var queueListener: ListenerRegistration? = null
+
+    private var myTokenValue = 0L
+    private var currentServingValue = 0L
+    private var serviceTime = 5L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_my_queue)
 
-        // Initialize Firebase
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        // Connect UI
         val tvRestaurantName =
             findViewById<TextView>(R.id.tvRestaurantName)
 
@@ -50,18 +53,21 @@ class MyQueueActivity : AppCompatActivity() {
         val btnCancelQueue =
             findViewById<Button>(R.id.btnCancelQueue)
 
-        // Display Restaurant
         tvRestaurantName.text = "Restaurant Queue"
 
-        // Check logged-in user
         val currentUser = auth.currentUser
 
         if (currentUser == null) {
 
-            tvMessage.text =
-                "You are not logged in."
-
-            btnCancelQueue.isEnabled = false
+            showNoQueue(
+                tvYourToken,
+                tvNowServing,
+                tvPeopleAhead,
+                tvEstimatedWait,
+                tvQueueStatus,
+                tvMessage,
+                btnCancelQueue
+            )
 
             return
         }
@@ -69,191 +75,360 @@ class MyQueueActivity : AppCompatActivity() {
         val userId = currentUser.uid
 
         /*
-         * Listen to the user's latest Restaurant ticket.
-         *
-         * We only look for:
-         * service = Restaurant
-         * userId = current user
+         * Listen to the user's Restaurant ticket.
          */
-        ticketListener = db.collection("tickets")
-            .whereEqualTo("userId", userId)
-            .whereEqualTo("service", "Restaurant")
-            .addSnapshotListener { snapshot, error ->
+        ticketListener =
+            db.collection("tickets")
+                .whereEqualTo("userId", userId)
+                .whereEqualTo("service", "Restaurant")
+                .addSnapshotListener { snapshot, error ->
 
-                if (error != null) {
+                    if (error != null) {
 
-                    tvMessage.text =
-                        "Could not load queue.\n${error.message}"
+                        tvMessage.text =
+                            "Could not load queue.\n${error.message}"
 
-                    return@addSnapshotListener
-                }
-
-                if (snapshot == null || snapshot.isEmpty) {
-
-                    tvYourToken.text = "--"
-                    tvNowServing.text = "--"
-                    tvPeopleAhead.text = "0"
-                    tvEstimatedWait.text =
-                        "Estimated wait: 0 minutes"
-
-                    tvQueueStatus.text = "No Active Queue"
-
-                    tvMessage.text =
-                        "You are not currently in a Restaurant queue."
-
-                    btnCancelQueue.isEnabled = false
-
-                    return@addSnapshotListener
-                }
-
-                // Find the latest non-cancelled ticket
-                val activeTickets = snapshot.documents
-                    .filter { document ->
-
-                        val status =
-                            document.getString("status")
-
-                        status != "CANCELLED" &&
-                                status != "COMPLETED"
-                    }
-                    .sortedByDescending { document ->
-
-                        document.getLong("joinedAt") ?: 0L
+                        return@addSnapshotListener
                     }
 
-                if (activeTickets.isEmpty()) {
+                    if (snapshot == null ||
+                        snapshot.isEmpty
+                    ) {
 
-                    tvYourToken.text = "--"
-                    tvNowServing.text = "--"
-                    tvPeopleAhead.text = "0"
-                    tvEstimatedWait.text =
-                        "Estimated wait: 0 minutes"
+                        showNoQueue(
+                            tvYourToken,
+                            tvNowServing,
+                            tvPeopleAhead,
+                            tvEstimatedWait,
+                            tvQueueStatus,
+                            tvMessage,
+                            btnCancelQueue
+                        )
 
-                    tvQueueStatus.text = "No Active Queue"
+                        return@addSnapshotListener
+                    }
 
-                    tvMessage.text =
-                        "You are not currently in a Restaurant queue."
+                    /*
+                     * Keep only active tickets.
+                     */
+                    val activeTickets =
+                        snapshot.documents
+                            .filter { document ->
 
-                    btnCancelQueue.isEnabled = false
+                                val status =
+                                    document.getString("status")
+                                        ?: ""
 
-                    return@addSnapshotListener
-                }
+                                status == "WAITING" ||
+                                        status == "CALLED" ||
+                                        status == "SERVING"
+                            }
+                            .sortedByDescending { document ->
 
-                val ticket = activeTickets.first()
-
-                // Get ticket values
-                val tokenNumber =
-                    ticket.getString("tokenNumber") ?: "R-00"
-
-                val status =
-                    ticket.getString("status") ?: "WAITING"
-
-                val tokenValue =
-                    ticket.getLong("tokenNumberValue") ?: 0L
-
-                // Display customer's token
-                tvYourToken.text = tokenNumber
-
-                // Get Restaurant queue document
-                val queueRef = db.collection("queues")
-                    .document("RESTAURANT")
-
-                queueRef.get()
-                    .addOnSuccessListener { queueDocument ->
-
-                        val currentServing =
-                            queueDocument.getLong("currentlyServing")
-                                ?: 0L
-
-                        val currentServingToken =
-                            if (currentServing > 0) {
-                                "R-" +
-                                        String.format(
-                                            "%02d",
-                                            currentServing
-                                        )
-                            } else {
-                                "R-00"
+                                document.getLong("joinedAt")
+                                    ?: 0L
                             }
 
-                        tvNowServing.text =
-                            currentServingToken
+                    if (activeTickets.isEmpty()) {
 
-                        // Calculate people ahead
-                        val peopleAhead =
-                            if (tokenValue > currentServing) {
-                                tokenValue - currentServing - 1
-                            } else {
-                                0
-                            }
+                        showNoQueue(
+                            tvYourToken,
+                            tvNowServing,
+                            tvPeopleAhead,
+                            tvEstimatedWait,
+                            tvQueueStatus,
+                            tvMessage,
+                            btnCancelQueue
+                        )
 
-                        tvPeopleAhead.text =
-                            peopleAhead.toString()
-
-                        // Restaurant estimated service time
-                        val estimatedMinutes =
-                            peopleAhead * 5
-
-                        tvEstimatedWait.text =
-                            "Estimated wait: " +
-                                    "$estimatedMinutes minutes"
+                        return@addSnapshotListener
                     }
 
-                // Update status text
-                tvQueueStatus.text =
+                    val ticket =
+                        activeTickets.first()
+
+                    val tokenNumber =
+                        ticket.getString("tokenNumber")
+                            ?: "R00"
+
+                    myTokenValue =
+                        ticket.getLong("tokenNumberValue")
+                            ?: 0L
+
+                    val status =
+                        ticket.getString("status")
+                            ?: "WAITING"
+
+                    /*
+                     * Show user's token.
+                     */
+                    tvYourToken.text =
+                        tokenNumber
+
+                    /*
+                     * Show current status.
+                     */
                     when (status) {
 
-                        "WAITING" ->
-                            "Waiting in Queue"
+                        "WAITING" -> {
 
-                        "CALLED" ->
-                            "Your Token Has Been Called!"
+                            tvQueueStatus.text =
+                                "Waiting in Queue"
 
-                        "SERVING" ->
-                            "You Are Being Served"
+                            tvQueueStatus.setTextColor(
+                                getColor(
+                                    R.color.queue_waiting
+                                )
+                            )
 
-                        else ->
-                            status
+                            tvMessage.text =
+                                "Please wait for your token to be called."
+
+                            btnCancelQueue.isEnabled =
+                                true
+                        }
+
+                        "CALLED" -> {
+
+                            tvQueueStatus.text =
+                                "Your Token Has Been Called!"
+
+                            tvQueueStatus.setTextColor(
+                                getColor(
+                                    R.color.queue_serving
+                                )
+                            )
+
+                            tvMessage.text =
+                                "Your token has been called. Please proceed to the restaurant counter."
+
+                            btnCancelQueue.isEnabled =
+                                false
+                        }
+
+                        "SERVING" -> {
+
+                            tvQueueStatus.text =
+                                "You Are Being Served"
+
+                            tvQueueStatus.setTextColor(
+                                getColor(
+                                    R.color.queue_serving
+                                )
+                            )
+
+                            tvMessage.text =
+                                "Your restaurant service is currently in progress."
+
+                            btnCancelQueue.isEnabled =
+                                false
+                        }
                     }
 
-                // Status colors
-                when (status) {
+                    /*
+                     * Cancel button.
+                     */
+                    btnCancelQueue.setOnClickListener {
 
-                    "CALLED",
-                    "SERVING" -> {
-                        tvQueueStatus.setTextColor(
-                            getColor(R.color.queue_serving)
-                        )
+                        if (status == "WAITING") {
+
+                            cancelTicket(
+                                ticket.id,
+                                tvMessage,
+                                btnCancelQueue
+                            )
+                        }
                     }
 
-                    "WAITING" -> {
-                        tvQueueStatus.setTextColor(
-                            getColor(R.color.queue_waiting)
-                        )
-                    }
-
-                    else -> {
-                        tvQueueStatus.setTextColor(
-                            getColor(R.color.text_secondary)
-                        )
-                    }
-                }
-
-                tvMessage.text =
-                    "Queue information updates automatically."
-
-                btnCancelQueue.isEnabled = true
-
-                // Cancel queue
-                btnCancelQueue.setOnClickListener {
-
-                    cancelTicket(
-                        ticket.id,
-                        tvMessage,
-                        btnCancelQueue
+                    /*
+                     * Calculate current queue position.
+                     */
+                    updateQueuePosition(
+                        tvPeopleAhead,
+                        tvEstimatedWait
                     )
                 }
+
+        /*
+         * Listen to Restaurant queue in real time.
+         */
+        queueListener =
+            db.collection("queues")
+                .document("RESTAURANT")
+                .addSnapshotListener { document, error ->
+
+                    if (error != null) {
+                        return@addSnapshotListener
+                    }
+
+                    if (document == null ||
+                        !document.exists()
+                    ) {
+
+                        currentServingValue = 0L
+                        serviceTime = 5L
+
+                        tvNowServing.text = "R00"
+
+                        updateQueuePosition(
+                            tvPeopleAhead,
+                            tvEstimatedWait
+                        )
+
+                        return@addSnapshotListener
+                    }
+
+                    currentServingValue =
+                        document.getLong(
+                            "currentlyServing"
+                        ) ?: 0L
+
+                    serviceTime =
+                        document.getLong(
+                            "estimatedServiceTime"
+                        ) ?: 5L
+
+                    /*
+                     * Display current serving token.
+                     */
+                    tvNowServing.text =
+                        if (currentServingValue > 0) {
+
+                            "R" +
+                                    String.format(
+                                        "%02d",
+                                        currentServingValue
+                                    )
+
+                        } else {
+
+                            "R00"
+                        }
+
+                    updateQueuePosition(
+                        tvPeopleAhead,
+                        tvEstimatedWait
+                    )
+                }
+    }
+
+    private fun updateQueuePosition(
+        tvPeopleAhead: TextView,
+        tvEstimatedWait: TextView
+    ) {
+
+        if (myTokenValue <= 0L) {
+
+            tvPeopleAhead.text = "0"
+
+            tvEstimatedWait.text =
+                "Estimated wait: 0 minutes"
+
+            return
+        }
+
+        /*
+         * If our token is already serving,
+         * nobody is ahead.
+         */
+        if (myTokenValue <= currentServingValue) {
+
+            tvPeopleAhead.text = "0"
+
+            tvEstimatedWait.text =
+                "Estimated wait: 0 minutes"
+
+            return
+        }
+
+        db.collection("tickets")
+            .whereEqualTo(
+                "queueId",
+                "RESTAURANT"
+            )
+            .whereEqualTo(
+                "status",
+                "WAITING"
+            )
+            .get()
+            .addOnSuccessListener { tickets ->
+
+                var peopleAhead = 0
+
+                for (document in tickets.documents) {
+
+                    val otherToken =
+                        document.getLong(
+                            "tokenNumberValue"
+                        ) ?: 0L
+
+                    /*
+                     * Only count real waiting customers
+                     * between current serving and our token.
+                     */
+                    if (
+                        otherToken > currentServingValue &&
+                        otherToken < myTokenValue
+                    ) {
+
+                        peopleAhead++
+                    }
+                }
+
+                tvPeopleAhead.text =
+                    peopleAhead.toString()
+
+                val estimatedWait =
+                    peopleAhead * serviceTime
+
+                tvEstimatedWait.text =
+                    "Estimated wait: " +
+                            "$estimatedWait minutes"
             }
+            .addOnFailureListener {
+
+                tvPeopleAhead.text = "0"
+
+                tvEstimatedWait.text =
+                    "Estimated wait unavailable"
+            }
+    }
+
+    private fun showNoQueue(
+        tvYourToken: TextView,
+        tvNowServing: TextView,
+        tvPeopleAhead: TextView,
+        tvEstimatedWait: TextView,
+        tvQueueStatus: TextView,
+        tvMessage: TextView,
+        btnCancelQueue: Button
+    ) {
+
+        myTokenValue = 0L
+
+        tvYourToken.text = "--"
+
+        tvNowServing.text = "R00"
+
+        tvPeopleAhead.text = "0"
+
+        tvEstimatedWait.text =
+            "Estimated wait: 0 minutes"
+
+        tvQueueStatus.text =
+            "No Active Queue"
+
+        tvQueueStatus.setTextColor(
+            getColor(
+                R.color.text_secondary
+            )
+        )
+
+        tvMessage.text =
+            "You are not currently in the Restaurant queue."
+
+        btnCancelQueue.isEnabled = false
+        btnCancelQueue.setOnClickListener(null)
     }
 
     private fun cancelTicket(
@@ -266,7 +441,10 @@ class MyQueueActivity : AppCompatActivity() {
 
         db.collection("tickets")
             .document(ticketId)
-            .update("status", "CANCELLED")
+            .update(
+                "status",
+                "CANCELLED"
+            )
             .addOnSuccessListener {
 
                 messageText.text =
@@ -277,8 +455,6 @@ class MyQueueActivity : AppCompatActivity() {
                     "Queue cancelled",
                     Toast.LENGTH_SHORT
                 ).show()
-
-                button.isEnabled = false
             }
             .addOnFailureListener { error ->
 
@@ -290,9 +466,10 @@ class MyQueueActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
 
-        // Stop Firestore listener
         ticketListener?.remove()
+        queueListener?.remove()
+
+        super.onDestroy()
     }
 }
