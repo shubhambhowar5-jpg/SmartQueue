@@ -4,18 +4,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Purple Header -->
+        <!-- HEADER -->
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="230dp"
             android:background="@drawable/bg_purple_gradient"
             android:gravity="center_vertical"
             android:orientation="vertical"
@@ -26,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="SmartQueue"
                 android:textColor="@color/white"
-                android:textSize="32sp"
+                android:textSize="34sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -42,14 +43,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="6dp"
                 android:text="Choose a service and skip the waiting line."
                 android:textColor="@color/secondary_light"
                 android:textSize="14sp" />
 
         </LinearLayout>
 
-        <!-- Services -->
+
+        <!-- CONTENT -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,19 +59,24 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+            <!-- Section title -->
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Services"
+                android:text="Choose a Service"
                 android:textColor="@color/text_primary"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
+
+            <!-- Restaurant -->
+
             <Button
                 android:id="@+id/btnRestaurant"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="18dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="@color/primary"
                 android:text="🍽  Restaurant"
                 android:textAllCaps="false"
@@ -77,10 +84,13 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
+
+            <!-- Beauty -->
+
             <Button
                 android:id="@+id/btnBeauty"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="12dp"
                 android:backgroundTint="@color/primary"
                 android:text="💇  Beauty Parlor"
@@ -89,10 +99,13 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
+
+            <!-- Dental -->
+
             <Button
                 android:id="@+id/btnDental"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="12dp"
                 android:backgroundTint="@color/primary"
                 android:text="🦷  Dental Clinic"
@@ -101,10 +114,13 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
+
+            <!-- Supermarket -->
+
             <Button
                 android:id="@+id/btnSupermarket"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="12dp"
                 android:backgroundTint="@color/primary"
                 android:text="🛒  Supermarket"
@@ -113,10 +129,13 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
+
+            <!-- Airport -->
+
             <Button
                 android:id="@+id/btnAirport"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="12dp"
                 android:backgroundTint="@color/primary"
                 android:text="✈  Airport"
@@ -125,14 +144,20 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
+
+            <!-- QUICK ACTIONS -->
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="30dp"
                 android:text="Quick Actions"
                 android:textColor="@color/text_primary"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+
+            <!-- My Queue -->
 
             <Button
                 android:id="@+id/btnMyQueue"
@@ -146,6 +171,9 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
+
+            <!-- Restaurant Staff -->
+
             <Button
                 android:id="@+id/btnRestaurantStaff"
                 android:layout_width="match_parent"
@@ -157,6 +185,9 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
+
+            <!-- Logout -->
 
             <Button
                 android:id="@+id/btnLogout"
