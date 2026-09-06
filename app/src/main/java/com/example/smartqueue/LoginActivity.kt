@@ -32,6 +32,9 @@ class LoginActivity : AppCompatActivity() {
         val registerText =
             findViewById<TextView>(R.id.tvRegister)
 
+        val staffLoginText =
+            findViewById<TextView>(R.id.tvStaffLogin)
+
         // =====================================================
         // TEMPORARY TEST LOGIN
         // Replace these with your test account credentials.
@@ -113,6 +116,17 @@ class LoginActivity : AppCompatActivity() {
                 Intent(
                     this,
                     RegisterActivity::class.java
+                )
+
+            startActivity(intent)
+        }
+
+        staffLoginText.setOnClickListener {
+
+            val intent =
+                Intent(
+                    this,
+                    StaffLoginActivity::class.java
                 )
 
             startActivity(intent)

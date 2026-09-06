@@ -21,9 +21,10 @@ android {
 
     buildTypes {
         release {
-            optimization {
-                enable = false
-            }
+            // Play Store release is prepared without changing app behavior.
+            isDebuggable = false
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
     compileOptions {
