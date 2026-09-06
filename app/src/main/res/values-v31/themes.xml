@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SmartQueue.Splash" parent="Theme.SmartQueue">
+        <item name="android:windowSplashScreenBackground">@color/primary_dark</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/smartqueue_logo_mark</item>
+        <item name="android:windowSplashScreenAnimationDuration">1</item>
+        <item name="android:windowSplashScreenBrandingImage">@null</item>
+        <item name="android:navigationBarColor">@color/primary_dark</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+</resources>

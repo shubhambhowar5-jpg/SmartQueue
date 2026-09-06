@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/background" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Restaurant Staff" android:textColor="@color/primary_dark" android:textSize="30sp" android:textStyle="bold" />
+        <TextView android:id="@+id/tvQueueStatus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Queue Status: ACTIVE" android:textColor="@color/text_secondary" android:textSize="14sp" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="22dp" android:background="@drawable/bg_queue_card" android:gravity="center" android:orientation="vertical" android:padding="28dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NOW SERVING" android:textColor="@color/text_secondary" android:textSize="12sp" android:textStyle="bold" />
+            <TextView android:id="@+id/tvNowServing" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="R00" android:textColor="@color/primary" android:textSize="54sp" android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:background="@drawable/bg_purple_card" android:gravity="center" android:orientation="vertical" android:padding="20dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CUSTOMERS WAITING" android:textColor="@color/text_secondary" android:textSize="11sp" android:textStyle="bold" />
+            <TextView android:id="@+id/tvPeopleWaiting" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="0" android:textColor="@color/primary" android:textSize="30sp" android:textStyle="bold" />
+        </LinearLayout>
+        <TextView android:id="@+id/tvCurrentCustomer" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:background="@drawable/bg_purple_card" android:gravity="center" android:padding="18dp" android:text="No customer is currently being served." android:textColor="@color/text_secondary" android:textSize="15sp" />
+        <Button android:id="@+id/btnCallNext" android:layout_width="match_parent" android:layout_height="58dp" android:layout_marginTop="18dp" android:background="@drawable/bg_purple_button" android:text="Call Next Customer" android:textAllCaps="false" android:textColor="@color/white" android:textSize="17sp" android:textStyle="bold" />
+        <Button android:id="@+id/btnComplete" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="10dp" android:backgroundTint="@color/queue_serving" android:enabled="false" android:text="Complete Customer" android:textAllCaps="false" android:textColor="@color/white" android:textSize="16sp" />
+        <Button android:id="@+id/btnSkip" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="10dp" android:backgroundTint="@color/queue_waiting" android:enabled="false" android:text="Skip Customer" android:textAllCaps="false" android:textColor="@color/white" android:textSize="16sp" />
+        <TextView android:id="@+id/tvStaffMessage" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:gravity="center" android:text="" android:textColor="@color/text_secondary" android:textSize="14sp" />
+    </LinearLayout>
+</ScrollView>
