@@ -17,6 +17,7 @@
         <!-- Main / Splash Activity -->
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.SmartQueue.Splash"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
 
@@ -56,6 +57,24 @@
         <!-- My Queue -->
         <activity
             android:name=".MyQueueActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Staff Login -->
+        <activity
+            android:name=".StaffLoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Admin Login -->
+        <activity
+            android:name=".AdminLoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Admin Staff Management -->
+        <activity
+            android:name=".AdminStaffActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

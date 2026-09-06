@@ -1,177 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <!-- Purple Header -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:background="@drawable/bg_purple_gradient"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:padding="24dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SmartQueue"
-                android:textColor="@color/white"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvWelcome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Welcome!"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Choose a service and skip the waiting line."
-                android:textColor="@color/secondary_light"
-                android:textSize="14sp" />
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/background" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="230dp" android:background="@drawable/bg_purple_gradient" android:gravity="bottom" android:orientation="vertical" android:padding="24dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SmartQueue" android:textColor="@color/white" android:textSize="34sp" android:textStyle="bold" />
+            <TextView android:id="@+id/tvWelcome" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="Welcome!" android:textColor="@color/white" android:textSize="20sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="Skip the line. Track your place. Save your time." android:textColor="@color/secondary_light" android:textSize="14sp" />
         </LinearLayout>
-
-        <!-- Services -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Services"
-                android:textColor="@color/text_primary"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnRestaurant"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="18dp"
-                android:backgroundTint="@color/primary"
-                android:text="🍽  Restaurant"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnBeauty"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="@color/primary"
-                android:text="💇  Beauty Parlor"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnDental"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="@color/primary"
-                android:text="🦷  Dental Clinic"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnSupermarket"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="@color/primary"
-                android:text="🛒  Supermarket"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnAirport"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="@color/primary"
-                android:text="✈  Airport"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="Quick Actions"
-                android:textColor="@color/text_primary"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnMyQueue"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginTop="14dp"
-                android:backgroundTint="@color/primary"
-                android:text="🎫  My Queue"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnRestaurantStaff"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/primary"
-                android:text="👨‍💼  Restaurant Staff"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnLogout"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/primary"
-                android:text="Logout"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Choose a Service" android:textColor="@color/text_primary" android:textSize="24sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Join a queue without standing in line." android:textColor="@color/text_secondary" android:textSize="14sp" />
+            <Button android:id="@+id/btnRestaurant" android:layout_width="match_parent" android:layout_height="62dp" android:layout_marginTop="18dp" android:background="@drawable/bg_purple_button" android:text="🍽  Restaurant" android:textAllCaps="false" android:textColor="@color/white" android:textSize="17sp" android:textStyle="bold" />
+            <Button android:id="@+id/btnBeauty" android:layout_width="match_parent" android:layout_height="62dp" android:layout_marginTop="10dp" android:background="@drawable/bg_secondary_button" android:text="💇  Beauty Parlor" android:textAllCaps="false" android:textColor="@color/primary_dark" android:textSize="17sp" android:textStyle="bold" />
+            <Button android:id="@+id/btnDental" android:layout_width="match_parent" android:layout_height="62dp" android:layout_marginTop="10dp" android:background="@drawable/bg_secondary_button" android:text="🦷  Dental Clinic" android:textAllCaps="false" android:textColor="@color/primary_dark" android:textSize="17sp" android:textStyle="bold" />
+            <Button android:id="@+id/btnSupermarket" android:layout_width="match_parent" android:layout_height="62dp" android:layout_marginTop="10dp" android:background="@drawable/bg_secondary_button" android:text="🛒  Supermarket" android:textAllCaps="false" android:textColor="@color/primary_dark" android:textSize="17sp" android:textStyle="bold" />
+            <Button android:id="@+id/btnAirport" android:layout_width="match_parent" android:layout_height="62dp" android:layout_marginTop="10dp" android:background="@drawable/bg_secondary_button" android:text="✈  Airport" android:textAllCaps="false" android:textColor="@color/primary_dark" android:textSize="17sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:text="Quick Actions" android:textColor="@color/text_primary" android:textSize="20sp" android:textStyle="bold" />
+            <Button android:id="@+id/btnMyQueue" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="12dp" android:background="@drawable/bg_purple_button" android:text="🎫  My Queue" android:textAllCaps="false" android:textColor="@color/white" android:textSize="16sp" android:textStyle="bold" />
+            
+            <Button android:id="@+id/btnLogout" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="10dp" android:background="@drawable/bg_secondary_button" android:text="Logout" android:textAllCaps="false" android:textColor="@color/text_secondary" android:textSize="16sp" />
         </LinearLayout>
-
     </LinearLayout>
-
 </ScrollView>

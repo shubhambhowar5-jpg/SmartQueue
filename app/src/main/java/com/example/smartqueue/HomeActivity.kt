@@ -39,8 +39,6 @@ class HomeActivity : AppCompatActivity() {
         val myQueue =
             findViewById<Button>(R.id.btnMyQueue)
 
-        val restaurantStaff =
-            findViewById<Button>(R.id.btnRestaurantStaff)
 
         val logout =
             findViewById<Button>(R.id.btnLogout)
@@ -87,15 +85,6 @@ class HomeActivity : AppCompatActivity() {
             )
         }
 
-        restaurantStaff.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    RestaurantStaffActivity::class.java
-                )
-            )
-        }
 
         logout.setOnClickListener {
 

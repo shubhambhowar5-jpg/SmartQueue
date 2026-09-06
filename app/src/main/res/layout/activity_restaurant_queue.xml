@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/background" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="160dp" android:background="@drawable/bg_purple_gradient" android:gravity="center" android:orientation="vertical">
+            <TextView android:id="@+id/restaurantTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Restaurant" android:textColor="@color/white" android:textSize="30sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Live queue status" android:textColor="@color/secondary_light" android:textSize="14sp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="-18dp" android:background="@drawable/bg_queue_card" android:gravity="center" android:orientation="vertical" android:padding="24dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NOW SERVING" android:textColor="@color/text_secondary" android:textSize="12sp" android:textStyle="bold" />
+            <TextView android:id="@+id/restaurantCurrentToken" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="R00" android:textColor="@color/primary" android:textSize="50sp" android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:orientation="horizontal">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:background="@drawable/bg_purple_card" android:gravity="center" android:orientation="vertical" android:padding="18dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="WAITING" android:textColor="@color/text_secondary" android:textSize="11sp" android:textStyle="bold" />
+                <TextView android:id="@+id/restaurantPeopleWaiting" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="0" android:textColor="@color/primary" android:textSize="28sp" android:textStyle="bold" />
+            </LinearLayout>
+            <Space android:layout_width="12dp" android:layout_height="1dp" />
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:background="@drawable/bg_purple_card" android:gravity="center" android:orientation="vertical" android:padding="18dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="WAIT TIME" android:textColor="@color/text_secondary" android:textSize="11sp" android:textStyle="bold" />
+                <TextView android:id="@+id/restaurantEstimatedWait" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="0 minutes" android:textColor="@color/primary" android:textSize="21sp" android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="26dp" android:text="Ready to join?" android:textColor="@color/text_primary" android:textSize="22sp" android:textStyle="bold" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="Join the Restaurant queue and get your token without standing in line." android:textColor="@color/text_secondary" android:textSize="15sp" />
+        <Button android:id="@+id/restaurantJoinButton" android:layout_width="match_parent" android:layout_height="58dp" android:layout_marginTop="20dp" android:background="@drawable/bg_purple_button" android:text="Join Queue" android:textAllCaps="false" android:textColor="@color/white" android:textSize="17sp" android:textStyle="bold" />
+        <TextView android:id="@+id/restaurantResult" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:gravity="center" android:text="" android:textColor="@color/primary" android:textSize="16sp" android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>

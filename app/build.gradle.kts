@@ -21,9 +21,10 @@ android {
 
     buildTypes {
         release {
-            optimization {
-                enable = false
-            }
+            // Play Store release is prepared without changing app behavior.
+            isDebuggable = false
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
     compileOptions {
@@ -43,6 +44,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:34.18.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-functions")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
