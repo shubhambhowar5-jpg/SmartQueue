@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/bg_purple_gradient"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="82dp"
+                android:layout_height="82dp"
+                android:background="@drawable/bg_logo_circle"
+                android:gravity="center"
+                android:text="S"
+                android:textColor="@color/primary"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Staff Registration"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Use the invitation from your admin"
+                android:textColor="@color/secondary_light"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-18dp"
+            android:background="@drawable/bg_purple_card"
+            android:elevation="8dp"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Name" android:textColor="@color/text_primary" android:textStyle="bold" />
+            <EditText android:id="@+id/etStaffRegisterName" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input" android:hint="Enter your name" android:singleLine="true" android:textColor="@color/text_primary" android:textColorHint="@color/text_secondary" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Staff Email" android:textColor="@color/text_primary" android:textStyle="bold" />
+            <EditText android:id="@+id/etStaffRegisterEmail" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input" android:hint="Use the invited email" android:inputType="textEmailAddress" android:singleLine="true" android:textColor="@color/text_primary" android:textColorHint="@color/text_secondary" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Invitation Code" android:textColor="@color/text_primary" android:textStyle="bold" />
+            <EditText android:id="@+id/etStaffInviteCode" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input" android:hint="6-digit code" android:inputType="number" android:maxLength="6" android:singleLine="true" android:textColor="@color/text_primary" android:textColorHint="@color/text_secondary" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Create Password" android:textColor="@color/text_primary" android:textStyle="bold" />
+            <EditText android:id="@+id/etStaffRegisterPassword" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input" android:hint="At least 6 characters" android:inputType="textPassword" android:singleLine="true" android:textColor="@color/text_primary" android:textColorHint="@color/text_secondary" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Confirm Password" android:textColor="@color/text_primary" android:textStyle="bold" />
+            <EditText android:id="@+id/etStaffRegisterConfirmPassword" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input" android:hint="Repeat password" android:inputType="textPassword" android:singleLine="true" android:textColor="@color/text_primary" android:textColorHint="@color/text_secondary" />
+
+            <Button android:id="@+id/btnStaffRegister" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="24dp" android:background="@drawable/bg_purple_button" android:text="Create Staff Account" android:textAllCaps="false" android:textColor="@color/white" android:textSize="17sp" android:textStyle="bold" />
+
+            <TextView android:id="@+id/tvBackToStaffLogin" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:layout_marginTop="20dp" android:text="Back to Staff Login" android:textColor="@color/primary" android:textSize="15sp" android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
