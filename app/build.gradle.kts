@@ -21,9 +21,10 @@ android {
 
     buildTypes {
         release {
-            optimization {
-                enable = false
-            }
+            // Play Store release is prepared without changing app behavior.
+            isDebuggable = false
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
     compileOptions {
@@ -36,6 +37,7 @@ dependencies {
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
+    implementation("androidx.drawerlayout:drawerlayout:1.2.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
 
